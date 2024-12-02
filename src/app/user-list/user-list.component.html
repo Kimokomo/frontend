@@ -1,0 +1,86 @@
+<app-user-list-navbar></app-user-list-navbar>
+
+<div>
+    <table class="table table-striped-columns">
+        <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Age</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; let i = index">
+                <th scope="row">{{ user.id }}</th>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.age }}</td>
+                <td>{{ user.dateOfBirth }}</td>
+                <td style="text-align: center; vertical-align: middle;">
+                    <span class="status-indicator"
+                        [ngClass]="{'status-true': user.status, 'status-false': !user.status}">
+                    </span>
+                </td>
+
+                <td>
+                    <div class="btn-group" role="group" aria-label="Action buttons">
+                        <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                            data-bs-target="#detailsModal" (click)="openUserDetails(user)">Details</button>
+
+                        <button type="button" class="btn btn-outline-warning" routerLink="/userDetails"
+                            routerLinkActive="active">Update</button>
+
+
+                        <button type="button" class="btn btn-outline-success">Add</button>
+                        <button type="button" class="btn btn-outline-danger">Delete</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">
+                    {{ selectedUser?.firstName }} {{ selectedUser?.lastName}}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex align-items-center">
+                    <!-- Profile Picture -->
+
+                    <!-- <img *ngIf="selectedUser?.profilePicture" [src]="selectedUser?.profilePicture"
+                        class="profile-img rounded-circle me-3" /> -->
+                    <div>
+                        <img src="spartan.jpg" class="profile-img rounded-circle me-3" />
+                    </div>
+                    <div>
+                        <ul style="list-style-type: none; padding: 0; margin-top: 110px;">
+                            <li><strong>ID:</strong> {{ selectedUser?.id }}</li>
+                            <li><strong>Gender:</strong> {{ selectedUser?.gender }}</li>
+                            <li><strong>Age:</strong> {{ selectedUser?.age }}</li>
+                            <li><strong>Date of Birth:</strong> {{ selectedUser?.age }}</li>
+                            <li><strong>Status:</strong> {{ selectedUser?.status }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
