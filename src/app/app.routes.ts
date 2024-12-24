@@ -3,6 +3,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { HomeComponent } from './home/home.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 
 export const routes: Routes = [
     {
@@ -20,5 +21,9 @@ export const routes: Routes = [
     {
         path: 'userDetails',
         component: UserDetailsComponent,
+    },
+    {
+        path: 'addUserForm',
+        component: AddUserFormComponent
     }
 ];
